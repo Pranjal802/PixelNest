@@ -8,9 +8,9 @@ import React from "react";
 
 export default function Portfolio() {
     return (
-      <div className="p-10">
-        <h1 className="text-3xl font-bold text-blue-900">Portfolio</h1>
-        <p className="mt-3 text-gray-600">
+      <div className="text-center p-10">
+        <h1 className="font-heading text-3xl font-bold text-blue-900">Portfolio</h1>
+        <p className="font-sans mt-3 text-gray-600">
           Some of our successful projects.
         </p>
       </div>

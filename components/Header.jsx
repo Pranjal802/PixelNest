@@ -136,7 +136,8 @@ export default function Header() {
                 className="
                   relative
                   px-1 py-1
-                  text-slate-300
+                  text-white
+                  text-lg
                   transition-all duration-300
                   hover:text-indigo-400
                   after:absolute after:left-0 after:-bottom-1

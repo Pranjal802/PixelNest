@@ -16,10 +16,8 @@ export default function Footer() {
         "
       >
         <div className="flex flex-col gap-10">
-
           {/* Top Section */}
           <div className="flex flex-col md:flex-row justify-between gap-10">
-
             {/* Logo + Company */}
             <div className="flex items-center gap-4 group">
               <div
@@ -41,40 +39,56 @@ export default function Footer() {
                   PixelNest
                 </h2>
                 <p className="text-sm text-slate-400">
-                  Fast. Reliable. Scalable Solutions.
+                  Design, Video, Web - Under One Roof
                 </p>
               </div>
             </div>
 
             {/* Links */}
             <div className="flex flex-wrap gap-12 text-sm">
-
               <div className="flex flex-col gap-3">
                 <h3 className="text-slate-100 font-medium">Company</h3>
-                <Link href="/about" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/about"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   About Us
                 </Link>
-                <Link href="/portfolio" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/portfolio"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   Portfolio
                 </Link>
-                <Link href="/services" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/services"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   Services
                 </Link>
               </div>
 
               <div className="flex flex-col gap-3">
                 <h3 className="text-slate-100 font-medium">Support</h3>
-                <Link href="/contact" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/contact"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   Contact
                 </Link>
-                <Link href="/" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   FAQs
                 </Link>
-                <Link href="/" className="hover:text-indigo-400 transition-colors">
+                <Link
+                  href="/"
+                  className="hover:text-indigo-400 transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </div>
-
             </div>
           </div>
 
@@ -88,7 +102,6 @@ export default function Footer() {
               Crafted with care for modern businesses
             </p>
           </div>
-
         </div>
       </div>
     </footer>
