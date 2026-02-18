@@ -2,8 +2,44 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";  
+import axios from "axios";
+
+// const react_app_backend_port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
 export default function ContactContent() {
+  console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
+
+  const [formData, setFormData] = useState({
+    f_name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  function handleChange(e) {
+    console.log(e.target.value);
+    setFormData({...formData, [e.target.name] : e.target.value})
+  }
+
+  function clearFormData(){
+    setFormData("");
+
+
+  }
+  async function handleSubmit(e) {   
+    e.preventDefault();
+    console.log(formData);
+    console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
+    try {
+      const res = await axios.post("http://localhost:4000/contact",formData);
+      alert(res.data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("Data sent to the backend");
+  }
   return (
     <div className="px-6 py-20 max-w-6xl mx-auto">
 
@@ -78,14 +114,18 @@ export default function ContactContent() {
           Send Us a Message
         </h2>
 
-        <form className="grid gap-6">
+        <form onSubmit={handleSubmit} className="grid gap-6">
           <div className="grid md:grid-cols-2 gap-6">
             <input
+            name="f_name"
+            onChange={handleChange}
               type="text"
               placeholder="Your Name"
               className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
             />
             <input
+            name="email"
+            onChange={handleChange}
               type="email"
               placeholder="Your Email"
               className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
@@ -93,12 +133,16 @@ export default function ContactContent() {
           </div>
 
           <input
+          name="subject"
+          onChange={handleChange}
             type="text"
             placeholder="Subject"
             className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
           />
 
           <textarea
+          name="message"
+          onChange={handleChange}
             rows="5"
             placeholder="Your Message"
             className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"

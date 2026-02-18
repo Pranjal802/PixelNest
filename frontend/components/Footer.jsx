@@ -49,6 +49,12 @@ export default function Footer() {
               <div className="flex flex-col gap-3">
                 <h3 className="text-slate-100 font-medium">Company</h3>
                 <Link
+                  href="/"
+                  className="hover:text-indigo-400 transition-colors"
+                >
+                  Home    
+                </Link>
+                <Link
                   href="/about"
                   className="hover:text-indigo-400 transition-colors"
                 >
