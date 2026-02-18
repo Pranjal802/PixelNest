@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";  
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // const react_app_backend_port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
@@ -35,10 +36,12 @@ export default function ContactContent() {
     // console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
     try {
       const res = await axios.post(base_url+"/contact",formData);
-      alert(res.data);
+      // alert(res.data);
+      toast.success("Contact details submitted successfully!")
       
     } catch (error) {
       console.log(error);
+      toast.success("Failed to submit the contact details!")
     }
     console.log("Data sent to the backend");
   }
