@@ -9,6 +9,7 @@ import axios from "axios";
 
 export default function ContactContent() {
   console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
+  const base_url = process.env.BASE_URL
 
   const [formData, setFormData] = useState({
     f_name: "",
@@ -32,7 +33,7 @@ export default function ContactContent() {
     console.log(formData);
     console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
     try {
-      const res = await axios.post("http://localhost:4000/contact",formData);
+      const res = await axios.post(base_url,formData);
       alert(res.data);
       
     } catch (error) {

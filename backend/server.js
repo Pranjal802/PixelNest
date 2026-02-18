@@ -7,7 +7,10 @@ import contactRoute from "./routes/contactRoute.js"
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://pixelnestsolutions.netlify.app/"
+}));
+
 app.use(express.json());
 
 app.use('/contact', contactRoute)
