@@ -8,8 +8,9 @@ import axios from "axios";
 // const react_app_backend_port = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
 export default function ContactContent() {
-  console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
-  const base_url = process.env.BASE_URL
+  // console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
+  const base_url = process.env.NEXT_PUBLIC_BASE_URL
+  console.log(base_url) 
 
   const [formData, setFormData] = useState({
     f_name: "",
