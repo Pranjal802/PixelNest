@@ -32,9 +32,9 @@ export default function ContactContent() {
   async function handleSubmit(e) {   
     e.preventDefault();
     console.log(formData);
-    console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
+    // console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
     try {
-      const res = await axios.post(base_url,formData);
+      const res = await axios.post(base_url+"/contact",formData);
       alert(res.data);
       
     } catch (error) {
