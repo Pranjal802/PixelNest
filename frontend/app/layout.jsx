@@ -6,9 +6,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
-  title: "PixelNest",
-  description: "It company which provides best services for Web Development, Video Editing and Design",
+  title: {
+    default: "PixelNest",
+    template: "PixelNest | %s",
+    description: "It company which provides best services for Web Development, Video Editing and Design",
+  },
 };
+// export const metadata = {
+//   title: "PixelNest",
+//   description: "It company which provides best services for Web Development, Video Editing and Design",
+// };
 
 export default function RootLayout({ children }) {
   return (

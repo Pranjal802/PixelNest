@@ -5,6 +5,9 @@ import React from "react";
 //         <h1>Services</h1>
 //     );
 // }
+export const metadata = {
+  title: "Services",
+};
 export default function Services() {
     return (
       <div className="p-10 text-center">

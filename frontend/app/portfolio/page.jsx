@@ -5,6 +5,9 @@ import React from "react";
 //         <h1>Portfolio</h1>
 //     );
 // }
+export const metadata = {
+  title: "Portfolio",
+};
 
 export default function Portfolio() {
     return (
