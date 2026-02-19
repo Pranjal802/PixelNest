@@ -12,6 +12,8 @@ export default function ContactContent() {
   // console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
   const base_url = process.env.NEXT_PUBLIC_BASE_URL
   console.log(base_url) 
+  const [loading, setLoading] = useState(false);
+
 
   const [formData, setFormData] = useState({
     f_name: "",
@@ -25,25 +27,36 @@ export default function ContactContent() {
     setFormData({...formData, [e.target.name] : e.target.value})
   }
 
-  function clearFormData(){
-    setFormData("");
-
-
+  function clearFormData() {
+    setFormData({
+      f_name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   }
   async function handleSubmit(e) {   
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     console.log(formData);
     // console.log(process.env.NEXT_PUBLIC_BACKEND_PORT)
     try {
       const res = await axios.post(base_url+"/contact",formData);
       // alert(res.data);
-      toast.success("Contact details submitted successfully!")
+      toast.success("Contact details submitted successfully!",{
+        duration : 3000,
+      })
+      clearFormData();
       
     } catch (error) {
       console.log(error);
-      toast.success("Failed to submit the contact details!")
+      toast.error("Failed to submit the contact details!",{
+        duration :  3000,
+      })
     }
     console.log("Data sent to the backend");
+    setLoading(false);
   }
   return (
     <div className="px-6 py-20 max-w-6xl mx-auto">
@@ -124,6 +137,7 @@ export default function ContactContent() {
             <input
             name="f_name"
             onChange={handleChange}
+            value={formData.f_name}
               type="text"
               placeholder="Your Name"
               className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
@@ -131,6 +145,7 @@ export default function ContactContent() {
             <input
             name="email"
             onChange={handleChange}
+            value={formData.email}
               type="email"
               placeholder="Your Email"
               className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
@@ -140,6 +155,7 @@ export default function ContactContent() {
           <input
           name="subject"
           onChange={handleChange}
+          value={formData.subject}
             type="text"
             placeholder="Subject"
             className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
@@ -148,17 +164,30 @@ export default function ContactContent() {
           <textarea
           name="message"
           onChange={handleChange}
+          value={formData.message}
             rows="5"
             placeholder="Your Message"
             className="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
           ></textarea>
 
-          <button
+          {/* <button
             type="submit"
             className="bg-blue-900 text-white py-3 rounded-full font-semibold hover:bg-blue-800 transition"
           >
             Send Message →
-          </button>
+          </button> */}
+          <button
+  type="submit"
+  disabled={loading}
+  className={`py-3 rounded-full font-semibold transition
+    ${loading 
+      ? "bg-gray-400 cursor-not-allowed" 
+      : "bg-blue-900 hover:bg-blue-800 text-white"}
+  `}
+>
+  {loading ? "Sending..." : "Send Message →"}
+</button>
+
         </form>
       </section>
 

@@ -7,8 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "PixelNest",
-  description:
-    "It company which provides best services for Web Development, Video Editing and Design",
+  description: "It company which provides best services for Web Development, Video Editing and Design",
 };
 
 export default function RootLayout({ children }) {
@@ -17,11 +16,20 @@ export default function RootLayout({ children }) {
       <body className="bg-gradient-to-b from-slate-50 to-slate-200">
         <Header />
         <ToastContainer
-          toastClassName={() =>
-            "relative flex p-4 min-h-10 rounded-xl justify-between overflow-hidden cursor-pointer bg-slate-900 text-white shadow-xl"
-          }
-          bodyClassName={() => "text-sm font-semibold"}
-        />
+  position="top-right"
+  autoClose={3000}
+  closeOnClick
+  pauseOnHover
+  draggable
+  hideProgressBar={false}
+  newestOnTop
+  className="toast-container"
+  toastClassName="toast-card"
+  bodyClassName="toast-body"
+  progressClassName="toast-progress"
+  closeButton={false}
+/>
+
         {children}
         <Footer />
       </body>
