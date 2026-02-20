@@ -68,43 +68,71 @@ export default function Home() {
         </h2>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+  {services.map((service, index) => {
+    const Icon = service.icon;
 
-            return (
-              <Link key={index} href={service.link} className="group">
-                <motion.div
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="relative"
-                >
-                  {/* Gradient Border */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-800 to-blue-500 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
+    return (
+      <Link key={index} href={service.link} className="group">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.15 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05 }}
+          className="relative"
+        >
+          {/* Hover Gradient Border */}
+          <div className="absolute -inset-0.5 
+            bg-gradient-to-r 
+            from-blue-800 
+            to-blue-600 
+            rounded-2xl 
+            blur 
+            opacity-0 
+            group-hover:opacity-60 
+            transition duration-500">
+          </div>
 
-                  {/* Glass Card */}
-                  <div className="relative bg-white/70 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-white/40 cursor-pointer">
-                    
-                    {/* Icon */}
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-900 text-white mb-6 shadow-md group-hover:bg-blue-800 transition">
-                      <Icon size={28} />
-                    </div>
+          {/* White Card */}
+          <div className="relative 
+            bg-white 
+            rounded-2xl 
+            p-8 
+            shadow-lg 
+            transition-all duration-300
+            hover:shadow-2xl
+          ">
+            
+            {/* Icon */}
+            <div className="
+  w-14 h-14 
+  flex items-center justify-center 
+  rounded-full 
+  bg-blue-900
+  text-white
+  mb-6 
+  shadow-md 
+  transition-all duration-300
+  group-hover:bg-blue-800
+  group-hover:scale-110
+">
+              <Icon size={28} />
+            </div>
 
-                    <h3 className="text-xl font-heading font-semibold text-blue-900 mb-4 group-hover:text-blue-700 transition">
-                      {service.title}
-                    </h3>
+            <h3 className="text-xl font-semibold text-slate-900 mb-4 transition duration-300">
+              {service.title}
+            </h3>
 
-                    <p className="text-gray-600 font-sans">
-                      {service.description}
-                    </p>
-                  </div>
-                </motion.div>
-              </Link>
-            );
-          })}
-        </div>
+            <p className="text-slate-600">
+              {service.description}
+            </p>
+
+          </div>
+        </motion.div>
+      </Link>
+    );
+  })}
+</div>
 
         {/* View All Services Button */}
         <div className="text-center mt-16">

@@ -9,7 +9,8 @@ export const metadata = {
   title: {
     default: "PixelNest",
     template: "PixelNest | %s",
-    description: "It company which provides best services for Web Development, Video Editing and Design",
+    description:
+      "It company which provides best services for Web Development, Video Editing and Design",
   },
 };
 // export const metadata = {
@@ -23,19 +24,19 @@ export default function RootLayout({ children }) {
       <body className="bg-gradient-to-b from-slate-50 to-slate-200">
         <Header />
         <ToastContainer
-  position="top-right"
-  autoClose={3000}
-  closeOnClick
-  pauseOnHover
-  draggable
-  hideProgressBar={false}
-  newestOnTop
-  className="toast-container"
-  toastClassName="toast-card"
-  bodyClassName="toast-body"
-  progressClassName="toast-progress"
-  closeButton={false}
-/>
+          position="top-right"
+          autoClose={3000}
+          closeOnClick
+          pauseOnHover
+          draggable
+          hideProgressBar={false}
+          newestOnTop
+          className="toast-container"
+          toastClassName="toast-card"
+          bodyClassName="toast-body"
+          progressClassName="toast-progress"
+          closeButton={false}
+        />
 
         {children}
         <Footer />
