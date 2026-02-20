@@ -1,5 +1,5 @@
 import AboutContent from "./AboutContent";
-import metadata from "next/metadata";
+// import metadata from "next/metadata";
 
 export const metadata = {
   title: "About Us",

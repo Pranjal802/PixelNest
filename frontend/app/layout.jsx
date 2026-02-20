@@ -13,11 +13,6 @@ export const metadata = {
       "It company which provides best services for Web Development, Video Editing and Design",
   },
 };
-// export const metadata = {
-//   title: "PixelNest",
-//   description: "It company which provides best services for Web Development, Video Editing and Design",
-// };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
