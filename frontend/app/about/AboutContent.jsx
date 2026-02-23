@@ -28,45 +28,63 @@ export default function AboutContent() {
 
   return (
     <div className="px-6 py-20 max-w-6xl mx-auto">
-
       {/* Hero Section */}
       <section className="text-center mb-20">
+        <div className="flex justify-center gap-5">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-heading text-4xl font-bold text-blue-900"
+          className="text-blue-900 text-4xl md:text-5xl font-bold mb-4"
         >
-          About PixelNest
+          About 
         </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-indigo-900 text-4xl md:text-5xl font-bold mb-4"
+        >
+          PixelNest
+        </motion.h1>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-slate-400 max-w-2xl mx-auto text-lg"
+        >
+          We are passionate about building innovative digital experiences. Our
+          mission is to deliver high-quality solutions that empower businesses
+          and create meaningful impact.
+        </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="font-sans mt-6 text-gray-600 text-lg max-w-3xl mx-auto"
+          className="font-sans mt-6 text-slate-400 text-lg max-w-3xl mx-auto"
         >
-          We are a passionate IT team delivering modern web solutions,
-          creative design and digital innovation for businesses worldwide.
+          We are a passionate IT team delivering modern web solutions, creative
+          design and digital innovation for businesses worldwide.
         </motion.p>
       </section>
 
-      {/* Company Story */}
-      <section className="mb-20 text-center">
-        <h2 className="text-3xl font-heading font-semibold text-blue-900 mb-6">
-          Our Story
-        </h2>
-        <p className="text-gray-600 max-w-4xl mx-auto leading-relaxed">
-          PixelNest was founded with a mission to help businesses thrive in the
-          digital era.
-        </p>
-      </section>
+      
 
       {/* Why Choose Us */}
-      <section className="mb-20">
-        <h2 className="text-3xl font-heading font-semibold text-center text-blue-900 mb-12">
-          Why Choose Us
-        </h2>
+      <section className="text-center mb-20">
+       
+        <div className="mb-10 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-blue-900 text-4xl md:text-5xl font-bold mb-4"
+          >
+            Why choose us?
+          </motion.h1>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-10">
           {features.map((feature, index) => {
@@ -109,7 +127,6 @@ export default function AboutContent() {
           Contact Us →
         </Link>
       </section>
-
     </div>
   );
 }

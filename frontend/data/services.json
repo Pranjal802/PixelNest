@@ -1,20 +1,39 @@
 [
-    {
-      "id": 1,
-      "title": "Web Development",
-      "description": "Faster development",
-      "icon": "FaCode"
-    },
-    {
-      "id": 2,
-      "title": "App Development",
-      "description": "Modern mobile apps",
-      "icon": "FaMobileAlt"
-    },
-    {
-      "id": 3,
-      "title": "UI/UX Design",
-      "description": "Creative designs",
-      "icon": "FaPaintBrush"
-    }
-  ]
+  {
+    "id": 1,
+    "title": "Web Development",
+    "short_description": "Modern, fast and responsive websites",
+    "long_description":
+      "We build high-performance, scalable, and SEO-friendly websites using modern technologies. Our focus is on speed, security, and user experience to help your business grow online.",
+    "icon": "FaCode",
+    "link": "/services"
+  },
+  {
+    "id": 2,
+    "title": "App Development",
+    "short_description": "Cross-platform mobile applications",
+    "long_description":
+      "We develop modern mobile applications for Android and iOS with smooth performance and clean UI. Our apps are optimized for speed, scalability, and user engagement.",
+    "icon": "FaMobileAlt",
+    "link": "/services"
+  },
+  {
+    "id": 3,
+    "title": "UI/UX Design",
+    "short_description": "Creative and user-focused designs",
+    "long_description":
+      "We design intuitive and visually appealing interfaces that enhance user experience. Our design process focuses on usability, accessibility, and modern design standards.",
+    "icon": "FaPaintBrush",
+    "link": "/services"
+  },
+  {
+    "id": 4,
+    "title": "SEO Optimization",
+    "short_description": "Improve search rankings",
+    "long_description": "We provide strategic SEO optimization services to improve your website’s visibility on search engines like Google. Our approach focuses on keyword research, technical optimization, content strategy, and performance improvements to increase traffic, rankings, and conversions. We ensure your website is optimized for speed, mobile responsiveness, and long-term growth.",
+    "icon": "FaSearch",
+    "link": "/services"
+  }
+]
+
+  

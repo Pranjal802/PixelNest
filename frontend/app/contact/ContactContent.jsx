@@ -82,6 +82,8 @@ export default function ContactContent() {
         </motion.p>
       </section>
 
+      
+
       {/* Contact Info Cards */}
       <section className="grid md:grid-cols-3 gap-8 mb-20">
         {[
