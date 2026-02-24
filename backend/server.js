@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config()
 import connectdb from "./config/db.js";
 import contactRoute from "./routes/contactRoute.js"
+import userClientRegister from "./routes/auth/clientRegisterRoute.js"
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use('/contact', contactRoute)
+app.use('/contact', contactRoute) // Contact Us route
+app.use('/auth', userClientRegister) // Client register route
 
 app.get('/', (req,res) => {
     res.send("Backend is running...")
