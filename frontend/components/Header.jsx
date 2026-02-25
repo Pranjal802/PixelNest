@@ -70,18 +70,18 @@ export default function Header() {
             })}
 
             {/* CTA Button */}
-                    <Link
-                      href="/login"
-                      className={
-              "px-5 py-2 rounded-full " +
-              (localStorage.getItem("isLoggedIn") ? "bg-red-500" : "bg-indigo-500") +
-               " text-white font-medium text-base transition-all duration-300 hover:bg-indigo-600 hover:shadow-lg"
-            }
-                    >
-                      {localStorage.getItem(
-                        "isLoggedIn"
-                      ) ? "Logout" : "Login"}
-                    </Link>
+            <Link
+              href="/login"
+              className={
+                "px-5 py-2 rounded-full " +
+                (localStorage.getItem("isLoggedIn")
+                  ? "bg-red-500"
+                  : "bg-indigo-500") +
+                " text-white font-medium text-base transition-all duration-300 hover:bg-indigo-600 hover:shadow-lg"
+              }
+            >
+              {localStorage.getItem("isLoggedIn") ? "Logout" : "Login"}
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -140,17 +140,22 @@ export default function Header() {
             <Link
               href="/login"
               onClick={() => setOpen(false)}
-              className="
-          w-full text-center
-          py-2.5 rounded-xl
-          bg-indigo-500 text-white
-          font-medium
-          transition-all duration-300
-          hover:bg-indigo-600
-          hover:shadow-lg
-        "
+              className={`
+                w-full text-center
+                py-2.5 rounded-xl
+                ${
+                  localStorage.getItem("isLoggedIn")
+                    ? "bg-red-500"
+                    : "bg-indigo-500"
+                }
+                text-white
+                font-medium
+                transition-all duration-300
+                hover:bg-indigo-600
+                hover:shadow-lg
+              `}
             >
-              Login as a Client
+              {localStorage.getItem("isLoggedIn") ? "Logout" : "Login"}
             </Link>
           </div>
         </div>

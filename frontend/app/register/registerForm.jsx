@@ -72,7 +72,12 @@ export default function RegisterForm() {
       toast.success("Registration successful!");
       clearClientData();
     } catch (error) {
-      toast.error("Registration failed. Please try again.");
+      if(error.response){
+        toast.error(error.response.data.message);
+      }else{
+        
+        toast.error("Registration failed, Please try again.");
+      }
     }
 
     setLoading(false);
