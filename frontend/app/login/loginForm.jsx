@@ -4,21 +4,56 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+
   const [role, setRole] = useState("client");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [clientData, setClientData] = useState({
+    clientEmail: "",
+    clientPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setClientData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
 
-    console.log({
-      role,
-      email,
-      password,
-    });
+    setLoading(true);
+
+    try {
+      const res = await axios.post(
+        `${base_url}/auth/client-login`,
+        clientData
+      );
+
+      if (res.status === 200) {
+        toast.success("Login successful!");
+        localStorage.setItem("isLoggedIn",true) ;
+        // If backend sends token:
+        // localStorage.setItem("token", res.data.token);
+
+        router.push("/"); // navigate to Home
+      }
+    } catch (error) {
+      toast.error("Login failed. Please try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -32,7 +67,6 @@ export default function LoginForm() {
         {role === "client" ? "Client Login" : "Admin Login"}
       </h2>
 
-      {/* Role Toggle */}
       <div className="flex bg-gray-100 rounded-full p-1 mb-8">
         <button
           type="button"
@@ -60,13 +94,13 @@ export default function LoginForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="grid gap-8">
-        {/* Email */}
         <div className="relative">
           <input
+            name="clientEmail"
             type="email"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={clientData.clientEmail}
+            onChange={handleChange}
             placeholder=" "
             className="peer w-full px-4 pt-6 pb-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 transition"
           />
@@ -75,13 +109,13 @@ export default function LoginForm() {
           </label>
         </div>
 
-        {/* Password */}
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
+            name="clientPassword"
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={clientData.clientPassword}
+            onChange={handleChange}
             placeholder=" "
             className="peer w-full px-4 pt-6 pb-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 transition"
           />
@@ -99,20 +133,19 @@ export default function LoginForm() {
           </button>
         </div>
 
-        {/* Submit */}
         <motion.button
           whileTap={{ scale: 0.97 }}
           type="submit"
+          disabled={loading}
           className="py-3 rounded-full font-semibold text-white bg-blue-900 hover:bg-blue-800 transition-all duration-300 hover:shadow-lg"
         >
-          Login →
+          {loading ? "Logging in..." : "Login →"}
         </motion.button>
 
-        {/* Register Link */}
         <p className="text-center text-sm text-gray-600">
           Not registered?{" "}
           <Link
-            href={"/register"}
+            href="/register"
             className="text-blue-900 font-medium hover:underline"
           >
             Create an account

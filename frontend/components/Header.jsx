@@ -70,19 +70,18 @@ export default function Header() {
             })}
 
             {/* CTA Button */}
-            <Link
-              href="/login"
-              className="
-      px-5 py-2 rounded-full
-      bg-indigo-500 text-white
-      font-medium text-base
-      transition-all duration-300
-      hover:bg-indigo-600
-      hover:shadow-lg
-    "
-            >
-              Login
-            </Link>
+                    <Link
+                      href="/login"
+                      className={
+              "px-5 py-2 rounded-full " +
+              (localStorage.getItem("isLoggedIn") ? "bg-red-500" : "bg-indigo-500") +
+               " text-white font-medium text-base transition-all duration-300 hover:bg-indigo-600 hover:shadow-lg"
+            }
+                    >
+                      {localStorage.getItem(
+                        "isLoggedIn"
+                      ) ? "Logout" : "Login"}
+                    </Link>
           </div>
 
           {/* Mobile Menu Button */}
