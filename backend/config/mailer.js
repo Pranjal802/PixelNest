@@ -11,9 +11,9 @@ export const sendVerificationEmail = async (email, token) => {
       pass: process.env.EMAIL_PASS, // App password
     },
   });
-  const frontend_url = "https://pixelnestsolutions.netlify.app"
+  const frontend_url = "https://pixelnest-delta.vercel.app/"
 
-  const verificationUrl = `${frontend_url}/verify-email?token=${token}`;
+  const verificationUrl = `${frontend_url}verify-email?token=${token}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
