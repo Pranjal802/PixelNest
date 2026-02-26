@@ -16,9 +16,19 @@ const userClientSchema = new mangoose.Schema({
         required: true,
         trim: true,
     },
-    isVarifiedByAdmin: {
+    isVerifiedByAdmin: {
         type: Boolean,
         default: false,
+    },
+    isEmailVerified: {
+        type: Boolean,
+        default: false, 
+    },
+    emailVerificationToken: {
+        type: String,
+    },
+    emailVerificationTokenExpires: {
+        type: Date,
     },
 }) 
 

@@ -1,5 +1,7 @@
 import userClientModel from "../models/userClientModel.js";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
+import { sendVerificationEmail } from "../config/mailer.js";
 
 const userClientRegister = async (req, res) => {
   try {
@@ -11,6 +13,8 @@ const userClientRegister = async (req, res) => {
       return res.status(400).json({ message: "User already exists...!!" });
     }
 
+    const token = crypto.randomBytes(32).toString("hex");
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(clientPassword, salt);
 
@@ -18,7 +22,11 @@ const userClientRegister = async (req, res) => {
       clientName,
       clientEmail,
       clientPassword: hashedPassword,
+      emailVerificationToken: token,
+      emailVerificationTokenExpires: Date.now() + 3600000, 
     });
+
+    await sendVerificationEmail(clientEmail, token);
 
     res.status(201).json({ message: "Registration successful!" });
 

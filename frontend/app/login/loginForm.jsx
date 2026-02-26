@@ -29,30 +29,71 @@ export default function LoginForm() {
     }));
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (loading) return;
+
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await axios.post(
+  //       `${base_url}/auth/client-login`,
+  //       clientData
+  //     );
+
+  //     if (res.status === 200) {
+  //       toast.success("Login successful!");
+  //       localStorage.setItem("isLoggedIn",true) ;
+  //       // If backend sends token:
+  //       // localStorage.setItem("token", res.data.token);
+
+  //       router.push("/"); // navigate to Home
+  //     }
+  //   } catch (error) {
+  //     toast.error("Login failed. Please try again.");
+  //   }
+
+  //   setLoading(false);
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
-
+  
     setLoading(true);
-
+  
     try {
       const res = await axios.post(
         `${base_url}/auth/client-login`,
         clientData
       );
-
-      if (res.status === 200) {
+  
+      if (res.data.success) {
         toast.success("Login successful!");
-        localStorage.setItem("isLoggedIn",true) ;
-        // If backend sends token:
-        // localStorage.setItem("token", res.data.token);
-
-        router.push("/"); // navigate to Home
+  
+        localStorage.setItem("isLoggedIn", "true");
+  
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
       }
+  
     } catch (error) {
-      toast.error("Login failed. Please try again.");
+      if (error.response) {
+        const message = error.response.data.message;
+  
+        if (message.includes("verify")) {
+          toast.warning("Please verify your email before logging in.");
+        } else if (message.includes("Invalid")) {
+          toast.error("Invalid email or password.");
+        } else {
+          toast.error(message);
+        }
+      } else {
+        toast.error("Server error. Please try again later.");
+      }
     }
-
+  
     setLoading(false);
   };
 

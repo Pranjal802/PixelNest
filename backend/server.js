@@ -6,6 +6,7 @@ import connectdb from "./config/db.js";
 import contactRoute from "./routes/contactRoute.js"
 import userClientRegister from "./routes/auth/clientRegisterRoute.js"
 import userClientLogin from "./routes/auth/clientLoginRoute.js"
+import clientEmailVerification from "./routes/auth/clientEmailVerificationRoute.js"
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/contact', contactRoute) // Contact Us route
 app.use('/auth', userClientRegister) // Client register route
 app.use('/auth', userClientLogin) // Client login route
+app.use('/auth', clientEmailVerification) // Verification route
 
 app.get('/', (req,res) => {
     res.send("Backend is running...")
