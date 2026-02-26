@@ -22,7 +22,7 @@ export default function VerifyEmail() {
 
       try {
         await axios.get(
-          `http://localhost:4000/auth/verify-email/${token}`
+          `https://pixelnestsolutions.netlify.app/auth/verify-email/${token}`
         );
 
         setStatus("success");
