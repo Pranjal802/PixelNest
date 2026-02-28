@@ -10,7 +10,7 @@ function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
-
+  const base_url = process.env.NEXT_PUBLIC_BASE_URL;
   const [status, setStatus] = useState("loading");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function VerifyEmailContent() {
 
       try {
         await axios.get(
-          `https://pixelnestsolutions.netlify.app/auth/verify-email/${token}`
+          `${base_url}/auth/verify-email/${token}`
         );
 
         setStatus("success");
