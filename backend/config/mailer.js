@@ -1,32 +1,18 @@
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-import constants from "./constants.js";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendVerificationEmail = async (email, token) => {
+  const verificationUrl = `https://pixelnest-delta.vercel.app/verify-email?token=${token}`;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS, // App password
-    },
-  });
-  const frontend_url = "https://pixelnest-delta.vercel.app/"
-
-  const verificationUrl = `${frontend_url}verify-email?token=${token}`;
-
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_USER,
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
     to: email,
     subject: "Verify Your Email",
     html: `
       <h2>Email Verification</h2>
-      <p>Click the link below to verify your email:</p>
-      <a href="${verificationUrl}">Verify Your Email</a>
+      <p>Click below:</p>
+      <a href="${verificationUrl}">Verify Email</a>
     `,
-    logger: true,
-    debug: true,
   });
-
-  console.log(info);
 };
