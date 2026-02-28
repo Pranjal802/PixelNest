@@ -10,9 +10,25 @@ import clientEmailVerification from "./routes/auth/clientEmailVerificationRoute.
 
 const app = express();
 
+// app.use(cors({
+//     origin: "https://pixelnest-delta.vercel.app/",
+//     credentials: true,
+// }));
+
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://pixelnest-delta.vercel.app"
+];
+
 app.use(cors({
-    origin: "https://pixelnest-delta.vercel.app/",
-    credentials: true,
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true
 }));
 
 app.use(express.json());
