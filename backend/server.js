@@ -10,7 +10,9 @@ import clientEmailVerification from "./routes/auth/clientEmailVerificationRoute.
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://pixelnest-delta.vercel.app",
+}));
 
 app.use(express.json());
 
