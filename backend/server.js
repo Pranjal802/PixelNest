@@ -12,6 +12,7 @@ const app = express();
 
 app.use(cors({
     origin: "https://pixelnest-delta.vercel.app",
+    credentials: true,
 }));
 
 app.use(express.json());
