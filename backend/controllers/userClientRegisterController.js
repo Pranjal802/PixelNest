@@ -26,7 +26,10 @@ const userClientRegister = async (req, res) => {
       emailVerificationTokenExpires: Date.now() + 3600000, 
     });
 
-    await sendVerificationEmail(clientEmail, token);
+    sendVerificationEmail(clientEmail, token)
+      .then(() => console.log("Verification email sent"))
+      .catch(err => console.log("Email error:", err));
+
 
     res.status(201).json({ message: "Registration successful!" });
 
