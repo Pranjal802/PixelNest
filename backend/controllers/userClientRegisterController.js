@@ -20,7 +20,7 @@ const userClientRegister = async (req, res) => {
 
     const clientData = await userClientModel.create({
       clientName,
-      clientEmail,
+      clientEmail : clientEmail.toLowerCase(),
       clientPassword: hashedPassword,
       emailVerificationToken: token,
       emailVerificationTokenExpires: Date.now() + 3600000, 

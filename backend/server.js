@@ -7,6 +7,8 @@ import contactRoute from "./routes/contactRoute.js"
 import userClientRegister from "./routes/auth/clientRegisterRoute.js"
 import userClientLogin from "./routes/auth/clientLoginRoute.js"
 import clientEmailVerification from "./routes/auth/clientEmailVerificationRoute.js"
+import clientForgotPassword from "./routes/auth/clientForgotPasswordRoute.js"
+import clientResetPassword from "./routes/auth/clientResetPasswordRoute.js"
 
 const app = express();
 
@@ -37,6 +39,8 @@ app.use('/contact', contactRoute) // Contact Us route
 app.use('/auth', userClientRegister) // Client register route
 app.use('/auth', userClientLogin) // Client login route
 app.use('/auth', clientEmailVerification) // Verification route
+app.use('/auth', clientForgotPassword) // Forgot password route
+app.use('/auth', clientResetPassword) // Reset password route
 
 app.get('/', (req,res) => {
     res.send("Backend is running...")

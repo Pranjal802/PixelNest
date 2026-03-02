@@ -30,6 +30,12 @@ const userClientSchema = new mangoose.Schema({
     emailVerificationTokenExpires: {
         type: Date,
     },
+    resetPasswordToken: {
+        type: String,
+    }, 
+    resetPasswordExpires: {
+        type: Date,
+    }
 }) 
 
 export default mangoose.model("userClient", userClientSchema);

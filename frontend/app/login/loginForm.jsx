@@ -29,113 +29,44 @@ export default function LoginForm() {
     }));
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (loading) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (loading) return;
 
-  //   setLoading(true);
+    setLoading(true);
 
-  //   try {
-  //     const res = await axios.post(
-  //       `${base_url}/auth/client-login`,
-  //       clientData
-  //     );
+    try {
+      const res = await axios.post(
+        `${base_url}/auth/client-login`,
+        clientData,
+        { withCredentials: true }
+      );
 
-  //     if (res.status === 200) {
-  //       toast.success("Login successful!");
-  //       localStorage.setItem("isLoggedIn",true) ;
-  //       // If backend sends token:
-  //       // localStorage.setItem("token", res.data.token);
+      if (res.data.success) {
+        toast.success("Login successful!");
 
-  //       router.push("/"); // navigate to Home
-  //     }
-  //   } catch (error) {
-  //     toast.error("Login failed. Please try again.");
-  //   }
-
-  //   setLoading(false);
-  // };
-
-//   const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   if (loading) return;
-
-//   setLoading(true);
-
-//   try {
-//     const res = await axios.post(
-//       `${base_url}/auth/client-login`,
-//       clientData
-//     );
-
-//     if (res.data.success) {
-//       toast.success("Login successful!");
-
-//       localStorage.setItem("isLoggedIn", "true");
-
-//       setTimeout(() => {
-//         router.push("/");
-//       }, 1500);
-//     }
-
-//   } catch (error) {
-//     if (error.response) {
-//       const message = error.response.data.message;
-
-//       if (message.includes("verify")) {
-//         toast.warning("Please verify your email before logging in.");
-//       } else if (message.includes("Invalid")) {
-//         toast.error("Invalid email or password.");
-//       } else {
-//         toast.error(message);
-//       }
-//     } else {
-//       toast.error("Server error. Please try again later.");
-//     }
-//   }
-
-//   setLoading(false);
-// };
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (loading) return;
-
-  setLoading(true);
-
-  try {
-    const res = await axios.post(
-      `${base_url}/auth/client-login`,
-      clientData,
-      { withCredentials: true }
-    );
-
-    if (res.data.success) {
-      toast.success("Login successful!");
-
-      setTimeout(() => {
-        router.push("/");
-      }, 1000);
-    }
-
-  } catch (error) {
-    if (error.response) {
-      const message = error.response.data.message;
-
-      if (message.includes("verify")) {
-        toast.warning("Please verify your email before logging in.");
-      } else if (message.includes("Invalid")) {
-        toast.error("Invalid email or password.");
-      } else {
-        toast.error(message);
+        setTimeout(() => {
+          router.push("/");
+        }, 1000);
       }
-    } else {
-      toast.error("Server error. Please try again later.");
-    }
-  }
+    } catch (error) {
+      if (error.response) {
+        const message = error.response.data.message;
 
-  setLoading(false);
-};
+        if (message.includes("verify")) {
+          toast.warning("Please verify your email before logging in.");
+        } else if (message.includes("Invalid")) {
+          toast.error("Invalid email or password.");
+        } else {
+          toast.error(message);
+        }
+      } else {
+        toast.error("Server error. Please try again later.");
+      }
+    }
+
+    setLoading(false);
+  };
 
   return (
     <motion.div
@@ -153,9 +84,7 @@ const handleSubmit = async (e) => {
           type="button"
           onClick={() => setRole("client")}
           className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
-            role === "client"
-              ? "bg-blue-900 text-white"
-              : "text-gray-600"
+            role === "client" ? "bg-blue-900 text-white" : "text-gray-600"
           }`}
         >
           Client
@@ -165,9 +94,7 @@ const handleSubmit = async (e) => {
           type="button"
           onClick={() => setRole("admin")}
           className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
-            role === "admin"
-              ? "bg-blue-900 text-white"
-              : "text-gray-600"
+            role === "admin" ? "bg-blue-900 text-white" : "text-gray-600"
           }`}
         >
           Admin
@@ -212,6 +139,14 @@ const handleSubmit = async (e) => {
           >
             {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
           </button>
+        </div>
+        <div className="flex justify-end -mt-4">
+          <Link
+            href="/forgot-password"
+            className="text-sm text-blue-900 hover:underline hover:text-blue-800 transition"
+          >
+            Forgot Password?
+          </Link>
         </div>
 
         <motion.button
