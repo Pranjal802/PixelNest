@@ -5,7 +5,7 @@ import "dotenv/config";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendVerificationEmail = async (email, token) => {
-  const verificationUrl = `https://pixelnest-delta.vercel.app/verify-email?token=${token}`;
+  const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
 
   await resend.emails.send({
     from: "onboarding@resend.dev",
